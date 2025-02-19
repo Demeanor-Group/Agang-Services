@@ -1,0 +1,36 @@
+[
+    {
+        "name": "Joe's Coffee",
+        "location": "Downtown",
+        "rating": 4.5,
+        "reviews": ["Great coffee!", "Friendly staff!"],
+        "image": "coffee.jpg"
+    },
+    {
+        "name": "Tech Repair Hub",
+        "location": "City Center",
+        "rating": 4.2,
+        "reviews": ["Fast service!", "Affordable prices."],
+        "image": "tech.jpg"
+    }
+]
+
+<script>
+    async function loadBusinesses() {
+        let response = await fetch('businesses.json');
+        let data = await response.json();
+        let container = document.querySelector('.container');
+
+        data.forEach(business => {
+            let div = document.createElement('div');
+            div.classList.add('business-card');
+            div.innerHTML = `<h3>${business.name}</h3>
+                            <p>Location: ${business.location}</p>
+                            <p>⭐⭐⭐⭐⭐ ${business.rating}</p>
+                            <p>Reviews:</p>
+                            <ul>${business.reviews.map(r => `<li>${r}</li>`).join('')}</ul>`;
+            container.appendChild(div);
+        });
+    }
+    loadBusinesses();
+</script>

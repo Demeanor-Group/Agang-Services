@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Directory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            margin: 0;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+        }
+        .container {
+            padding: 20px;
+        }
+        .business-card {
+            background: white;
+            margin: 15px auto;
+            padding: 10px;
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>Agang Services</header>
+    <header>Let's do it together!</header>
+    <div class="container">
+        <p>The best businesses in town, chosen by you!</p>
+        <div class="business-card">
+            <h3>AED Parfum</h3>
+            <p>Location: Tirong Estate Unit no 32</p>
+            <p>⭐⭐⭐⭐☆</p>
+        </div>
+    </div>
+</body>
+
+<script>
+    async function loadBusinesses() {
+        let response = await fetch('businesses.json');
+        let data = await response.json();
+        let container = document.querySelector('.container');
+
+        data.forEach(business => {
+            let div = document.createElement('div');
+            div.classList.add('business-card');
+            div.innerHTML = `<h3>${business.name}</h3>
+                            <p>Location: ${business.location}</p>
+                            <p>⭐⭐⭐⭐⭐ ${business.rating}</p>`;
+            container.appendChild(div);
+        });
+    }
+    loadBusinesses();
+</script>
+
+<div class="container">
+    <h2>Want to add your business?</h2>
+    <iframe src=<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeBYb9dUX3Irbd65tmV5TuC_hGXkmdfNxeUG_M6WF9ykx99lA/viewform?embedded=true" width="640" height="2026" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> width="100%" height="500"></iframe>
+</div>
+</html>
